@@ -30,9 +30,9 @@ const Player = () => {
             <div className="roundedd w-28 h-28 border-4 border-white rounded-full bg-white/60 backdrop-blur-md flex items-center justify-center text-[24px] font-bold text-orange-500">
               X
             </div>
-            <div className="roundedd w-10 h-10 bg-black/50 backdrop-blur-md rounded-full flex items-center justify-center text-[23px] text-white">
+            {/* <div className="roundedd w-10 h-10 bg-black/50 backdrop-blur-md rounded-full flex items-center justify-center text-[23px] text-white">
               <IoSettingsOutline />
-            </div>
+            </div> */}
           </div>
           <div className="center text-center text-white text-[22px] sm:text-[30px] font-bold relative -top-10 px-2">
             <p>XASANBAYEV BEXRUZ</p>
@@ -82,6 +82,14 @@ const Player = () => {
           >
             <LuUser size={18} />
             <span>Profile Info</span>
+          </div>
+          <div
+            className={`input mt-3 w-full h-11 flex gap-4 items-center border-2 border-orange-500 px-3 rounded-lg ${
+              DarkMode ? "text-white" : "text-gray-800"
+            }`}
+          >
+            <IoSettingsOutline size={18} />
+            <span>Settings</span>
           </div>
         </div>
 
