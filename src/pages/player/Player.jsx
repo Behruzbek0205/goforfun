@@ -10,6 +10,7 @@ import { RiSettings3Line } from "react-icons/ri";
 const Player = () => {
   const [DarkMode, setDarkMode] = useState(true);
   const [Notifications, setNotifications] = useState(false);
+  const [open, setOpen] = useState(false);
 
   const handleDarkModeChange = (event) => {
     setDarkMode(event.target.checked);
@@ -21,70 +22,60 @@ const Player = () => {
 
   return (
     <section
-      className={`w-full min-h-screen transition-colors duration-300 pb-10 overflow-x-hidden`}
+      className="w-full min-h-screen transition-colors duration-300 pb-10 overflow-x-hidden"
       style={{ backgroundColor: DarkMode ? "#171717" : "#ffffff" }}
     >
-      <div className="all flex justify-center pt-20 px-4">
-        <div className="information w-full max-w-md bg-gradient-to-br from-orange-400 via-orange-500 to-orange-400 rounded-4xl">
-          <div className="top flex items-end justify-center gap-4 relative -top-14">
-            <div className="roundedd w-28 h-28 border-4 border-white rounded-full bg-white/60 backdrop-blur-md flex items-center justify-center text-[24px] font-bold text-orange-500">
+      <div className="flex justify-center pt-20 px-4">
+        <div className="w-full max-w-md bg-gradient-to-br from-orange-400 via-orange-500 to-orange-400 rounded-4xl">
+          <div className="flex items-end justify-center relative -top-14">
+            <div className="w-28 h-28 border-4 border-white rounded-full bg-white/60 backdrop-blur-md flex items-center justify-center text-[24px] font-bold text-orange-500">
               X
             </div>
-            {/* <div className="roundedd w-10 h-10 bg-black/50 backdrop-blur-md rounded-full flex items-center justify-center text-[23px] text-white">
-              <IoSettingsOutline />
-            </div> */}
           </div>
-          <div className="center text-center text-white text-[22px] sm:text-[30px] font-bold relative -top-10 px-2">
-            <p>XASANBAYEV BEXRUZ</p>
+
+          <div className="text-center text-white text-[26px] font-bold relative -top-10">
+            XASANBAYEV BEXRUZ
           </div>
-          <div className="bottom grid grid-cols-3 gap-2 justify-items-center relative -top-5 px-4 pb-4">
-            <div className="side w-full h-13 bg-amber-300/30 backdrop-blur-md rounded-2xl flex flex-col items-center justify-center text-white text-[12px] sm:text-[14px]">
-              <p>Age</p>
-              <span>-</span>
-            </div>
-            <div className="side w-full h-13 bg-amber-300/30 backdrop-blur-md rounded-2xl flex flex-col items-center justify-center text-white text-[12px] sm:text-[14px]">
-              <p>Position</p>
-              <span>Mid</span>
-            </div>
-            <div className="side w-full h-13 bg-amber-300/30 backdrop-blur-md rounded-2xl flex flex-col items-center justify-center text-white text-[12px] sm:text-[14px]">
-              <p>Nationality</p>
-              <span>-</span>
-            </div>
-            <div className="side w-full h-13 bg-amber-300/30 backdrop-blur-md rounded-2xl flex flex-col items-center justify-center text-white text-[12px] sm:text-[14px]">
-              <p>Games</p>
-              <span>0</span>
-            </div>
-            <div className="side w-full h-13 bg-amber-300/30 backdrop-blur-md rounded-2xl flex flex-col items-center justify-center text-white text-[12px] sm:text-[14px]">
-              <p>Won</p>
-              <span>0</span>
-            </div>
-            <div className="side w-full h-13 bg-amber-300/30 backdrop-blur-md rounded-2xl flex flex-col items-center justify-center text-white text-[12px] sm:text-[14px]">
-              <p>Lost</p>
-              <span>0</span>
-            </div>
+
+          <div className="grid grid-cols-3 gap-2 px-4 pb-4 relative -top-5">
+            {[
+              ["Age", "-"],
+              ["Position", "Mid"],
+              ["Nationality", "-"],
+              ["Games", "0"],
+              ["Won", "0"],
+              ["Lost", "0"],
+            ].map(([label, value]) => (
+              <div
+                key={label}
+                className="bg-amber-300/30 backdrop-blur-md rounded-2xl flex flex-col items-center justify-center text-white text-[13px] h-14"
+              >
+                <p>{label}</p>
+                <span>{value}</span>
+              </div>
+            ))}
           </div>
         </div>
       </div>
-
-      <div className="main-container max-w-md mx-auto space-y-4 mt-4">
-        <div className="account flex flex-col px-4">
+      <div className="max-w-md mx-auto space-y-5 mt-4">
+        <div className="px-4">
           <span
-            className={`text-[18px] ${
-              DarkMode ? "text-white" : "text-gray-800"
-            }`}
+            className={`text-lg ${DarkMode ? "text-white" : "text-gray-800"}`}
           >
             Account
           </span>
           <div
-            className={`input mt-3 w-full h-11 flex gap-4 items-center border-2 border-orange-500 px-3 rounded-lg ${
+            onClick={() => setOpen(true)}
+            className={`mt-3 h-11 flex gap-4 items-center border-2 border-orange-500 px-3 rounded-lg cursor-pointer ${
               DarkMode ? "text-white" : "text-gray-800"
             }`}
           >
             <LuUser size={18} />
             <span>Profile Info</span>
           </div>
+
           <div
-            className={`input mt-3 w-full h-11 flex gap-4 items-center border-2 border-orange-500 px-3 rounded-lg ${
+            className={`mt-3 h-11 flex gap-4 items-center border-2 border-orange-500 px-3 rounded-lg ${
               DarkMode ? "text-white" : "text-gray-800"
             }`}
           >
@@ -92,21 +83,19 @@ const Player = () => {
             <span>Settings</span>
           </div>
         </div>
-
-        <div className="preferences flex flex-col px-4">
+        <div className="px-4">
           <span
-            className={`text-[18px] ${
-              DarkMode ? "text-white" : "text-gray-800"
-            }`}
+            className={`text-lg ${DarkMode ? "text-white" : "text-gray-800"}`}
           >
             Preferences
           </span>
+
           <div
-            className={`input mt-3 w-full h-14 flex justify-between items-center border-2 border-orange-500 px-3 rounded-lg ${
+            className={`mt-3 h-14 flex justify-between items-center border-2 border-orange-500 px-3 rounded-lg ${
               DarkMode ? "text-white" : "text-gray-800"
             }`}
           >
-            <div className="text flex gap-4 items-center">
+            <div className="flex gap-4 items-center">
               <RiSettings3Line size={20} />
               <span>Dark Mode</span>
             </div>
@@ -117,12 +106,13 @@ const Player = () => {
               size="small"
             />
           </div>
+
           <div
-            className={`input mt-3 w-full h-14 flex justify-between items-center border-2 border-orange-500 px-3 rounded-lg ${
+            className={`mt-3 h-14 flex justify-between items-center border-2 border-orange-500 px-3 rounded-lg ${
               DarkMode ? "text-white" : "text-gray-800"
             }`}
           >
-            <div className="text flex gap-4 items-center">
+            <div className="flex gap-4 items-center">
               <IoIosNotificationsOutline size={24} />
               <span>Notifications</span>
             </div>
@@ -134,25 +124,24 @@ const Player = () => {
             />
           </div>
         </div>
-
-        <div className="more flex flex-col px-4">
+        <div className="px-4">
           <span
-            className={`text-[18px] ${
-              DarkMode ? "text-white" : "text-gray-800"
-            }`}
+            className={`text-lg ${DarkMode ? "text-white" : "text-gray-800"}`}
           >
             More
           </span>
+
           <div
-            className={`input mt-3 w-full h-11 flex gap-4 items-center border-2 border-orange-500 px-3 rounded-lg ${
+            className={`mt-3 h-11 flex gap-4 items-center border-2 border-orange-500 px-3 rounded-lg ${
               DarkMode ? "text-white" : "text-gray-800"
             }`}
           >
             <FaRegComment size={18} />
             <span>Live Support</span>
           </div>
+
           <div
-            className={`input mt-3 w-full h-11 flex gap-4 items-center border-2 border-orange-500 px-3 rounded-lg ${
+            className={`mt-3 h-11 flex gap-4 items-center border-2 border-orange-500 px-3 rounded-lg ${
               DarkMode ? "text-white" : "text-gray-800"
             }`}
           >
@@ -161,10 +150,47 @@ const Player = () => {
           </div>
         </div>
       </div>
-
-      <div className="logOut flex items-center justify-center gap-4 text-[18px] text-[red] mt-8 ">
+      <div className="flex items-center justify-center gap-3 text-red-500 text-lg mt-8">
         <LuLogOut /> <span>Log Out</span>
       </div>
+
+      {open && (
+        <div
+          onClick={() => setOpen(false)}
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/60"
+        >
+          <div
+            onClick={(e) => e.stopPropagation()}
+            className={`w-[90%] max-w-md rounded-2xl p-6 animate-scale ${
+              DarkMode ? "bg-neutral-900 text-white" : "bg-white text-gray-800"
+            }`}
+          >
+            <h2 className="text-xl font-bold mb-4">Profile Information</h2>
+
+            <div className="space-y-2 text-sm">
+              <p>
+                <b>Name:</b> Xasanbayev Bexruz
+              </p>
+              <p>
+                <b>Age:</b> -
+              </p>
+              <p>
+                <b>Position:</b> Mid
+              </p>
+              <p>
+                <b>Nationality:</b> -
+              </p>
+            </div>
+
+            <button
+              onClick={() => setOpen(false)}
+              className="mt-6 w-full py-2 rounded-lg bg-orange-500 text-white hover:bg-orange-600"
+            >
+              Yopish
+            </button>
+          </div>
+        </div>
+      )}
     </section>
   );
 };
