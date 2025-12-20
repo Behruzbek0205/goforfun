@@ -33,7 +33,7 @@ const Player = () => {
             </div>
           </div>
 
-          <div className="text-center text-white text-[26px] font-bold relative -top-10">
+          <div className="name text-center text-white text-[26px] font-bold relative -top-10">
             XASANBAYEV BEXRUZ
           </div>
 
@@ -169,16 +169,16 @@ const Player = () => {
 
             <div className="space-y-2 text-sm">
               <p>
-                <b>Name:</b> Xasanbayev Bexruz
+                <b>Username:</b> Xasanbayev Bexruz
               </p>
               <p>
                 <b>Age:</b> -
               </p>
               <p>
-                <b>Position:</b> Mid
+                <b>Number:</b> +998
               </p>
               <p>
-                <b>Nationality:</b> -
+                <b>Extra number:</b> +998
               </p>
             </div>
 
